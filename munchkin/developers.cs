@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace munchkin
 {
-    public partial class Form1 : Form
+    public partial class developers : Form
     {
-        public Form1()
+        public developers()
         {
             InitializeComponent();
+        }
+
+        private void developers_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
