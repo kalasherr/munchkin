@@ -20,6 +20,10 @@ namespace munchkin
         private void startgame_Click(object sender, EventArgs e)
         {
             
+            game game_form = new game();
+            game_form.Show();
+            this.Hide();
+
         }
 
         private void developers_Click(object sender, EventArgs e)
