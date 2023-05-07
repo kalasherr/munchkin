@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,6 +22,16 @@ namespace munchkin
         {
             head,body,shoes,not_required,hand
         }
+        enum table_state
+        {
+            battle,first_player_move,second_player_move,punishment,waiting_for_action
+        }
+        abstract class Card
+        {
+            public int id;
+            public string name;
+        }
+
         struct monster_bonus
         {
             public int role_value;
@@ -28,20 +39,26 @@ namespace munchkin
             public int domitary_value;
             public domitary bonus_domitary;
         }
-        struct item
+        class item : Card
         {
-            public int id;
-            public string name;
             public int power;
             public bool big_item;
             public slot slot;
-            public item (int id, string name, int power, bool big_item, slot slot)
+            public Munchkin equipped;
+            public item(int id, string name, int power, bool big_item, slot slot, Munchkin equipped)
             {
                 this.id = id;
                 this.name = name;
                 this.power = power;
                 this.big_item = big_item;
                 this.slot = slot;
+                this.equipped = equipped;
+            }
+
+            public void Drop(slot slot,List<Card> droppedcards,Munchkin player)
+            {
+                player.items[slot] = null;
+
             }
         }
         class Munchkin
@@ -56,13 +73,16 @@ namespace munchkin
             public bool double_domitary;
             public domitary domitary1;
             public domitary domitary2;
+            
         }
-        class Monster
+        class Monster:Card
         {
-            public int id;
-            public string name;
             public int level;
             public monster_bonus bonus;
+            public Monster (int id, string name, int level,monster_bonus bonus)
+            {
+
+            }
         }
         [STAThread]
         static void Main()
