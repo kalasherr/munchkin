@@ -116,5 +116,11 @@
   <ItemGroup>
     <None Include="Properties\thanks.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\door_deck_1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\treasure_deck_1.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

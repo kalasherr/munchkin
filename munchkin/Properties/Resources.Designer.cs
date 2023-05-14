@@ -63,6 +63,16 @@ namespace munchkin.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap door_deck_1 {
+            get {
+                object obj = ResourceManager.GetObject("door_deck_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap munchkin {
             get {
                 object obj = ResourceManager.GetObject("munchkin", resourceCulture);
@@ -116,6 +126,16 @@ namespace munchkin.Properties {
         internal static System.Drawing.Bitmap thanks {
             get {
                 object obj = ResourceManager.GetObject("thanks", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap treasure_deck_1 {
+            get {
+                object obj = ResourceManager.GetObject("treasure_deck_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
