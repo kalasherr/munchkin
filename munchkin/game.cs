@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,6 +33,10 @@ namespace munchkin
         {
             public int id;
             public string name;
+            public void CardOpen(int id)
+            {
+                
+            }
         }
 
         struct monster_bonus
@@ -46,15 +51,15 @@ namespace munchkin
             public int power;
             public bool big_item;
             public slot slot;
-            public Munchkin equipped;
-            public item(int id, string name, int power, bool big_item, slot slot, Munchkin equipped)
+            public bool usable;
+            public item(int id, string name, int power, bool big_item, slot slot,bool usable)
             {
                 this.id = id;
                 this.name = name;
                 this.power = power;
                 this.big_item = big_item;
                 this.slot = slot;
-                this.equipped = equipped;
+                this.usable = usable;
             }
 
             public void Drop(slot slot, List<Card> droppedcards, Munchkin player)
@@ -77,15 +82,29 @@ namespace munchkin
         {
             public int level;
             public monster_bonus bonus;
-            public Monster(int id, string name, int level, monster_bonus bonus)
+            public int treasure;
+            public Monster(int id, string name, int level, monster_bonus bonus,int treasure)
             {
-
+                this.id= id;
+                this.name = name;
+                this.level = level;
+                this.bonus = bonus;
+                this.treasure = treasure;
             }
         }
         public int a = 0;
+        table_state state = new table_state();
+        
+        
         public game()
         {
             InitializeComponent();
+            state = table_state.first_player_move;
+            if (state == table_state.first_player_move)
+            {
+                button4.Enabled = true;
+                
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -115,6 +134,17 @@ namespace munchkin
         {
             character_form charform = new character_form();
             charform.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button4.Enabled = false;
+            pictureBox7.Enabled = true;
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

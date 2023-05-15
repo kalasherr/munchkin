@@ -52,12 +52,16 @@ namespace munchkin
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -153,7 +157,7 @@ namespace munchkin
             this.pictureBox6.BackgroundImage = global::munchkin.Properties.Resources.door_deck_1_flipped;
             this.pictureBox6.Location = new System.Drawing.Point(329, -92);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(150, 236);
+            this.pictureBox6.Size = new System.Drawing.Size(150, 234);
             this.pictureBox6.TabIndex = 11;
             this.pictureBox6.TabStop = false;
             // 
@@ -202,12 +206,46 @@ namespace munchkin
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.Location = new System.Drawing.Point(59, 98);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(125, 37);
+            this.button4.TabIndex = 14;
+            this.button4.Text = "Вытянуть";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button5.Location = new System.Drawing.Point(59, 461);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(125, 37);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "Вытянуть";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImage = global::munchkin.Properties.Resources.door_deck_1_flipped;
+            this.pictureBox7.Location = new System.Drawing.Point(329, 179);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(150, 229);
+            this.pictureBox7.TabIndex = 16;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox6);
@@ -232,6 +270,7 @@ namespace munchkin
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,5 +293,8 @@ namespace munchkin
         private PictureBox pictureBox6;
         private Label label4;
         private Label label5;
+        private Button button4;
+        private Button button5;
+        private PictureBox pictureBox7;
     }
 }
