@@ -69,12 +69,8 @@ namespace munchkin
             public string name;
             public int level;
             public Dictionary<slot, item> items;
-            public bool teamlead;
-            public role role1;
-            public role role2;
-            public bool double_domitary;
-            public domitary domitary1;
-            public domitary domitary2;
+            public role role;
+            public domitary domitary;
 
         }
         class Monster : Card
@@ -97,7 +93,7 @@ namespace munchkin
             a = a + 1;
             if (a < 60)
             {
-                label3.Text = Convert.ToString(a);
+                label3.Text = (a % 60 > 9 ? "00:" : "00:0") + Convert.ToString(a);
             }
             else if (a < 3600)
             {
@@ -107,6 +103,18 @@ namespace munchkin
             {
                 label3.Text = (a / 3600 > 9 ? "" : "0") + Convert.ToString(a / 3600) + ":" +  (a % 3600/60 > 9 ? "" : "0")+Convert.ToString(a%3600 /60)+":" + (a% 60 > 9 ? "" : "0") + (a%60);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            character_form charform = new character_form();
+            charform.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            character_form charform = new character_form();
+            charform.Show();
         }
     }
 }
