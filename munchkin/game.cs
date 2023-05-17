@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace munchkin
 {
     public partial class game : Form
     {
+        Random rnd = new Random();
+        int cardid = 0;
         enum role
         {
             analyst, developer, tester
@@ -33,12 +36,14 @@ namespace munchkin
         {
             public int id;
             public string name;
-            public void CardOpen(int id)
-            {
-                
-            }
+            
         }
-
+        public void CardOpen(int id)
+        {
+            cardform cardform = new cardform();
+            cardform.BackgroundImage = Image.FromFile("c:/Users/kalas/source/repos/munchkin/munchkin/munchkin/Properties/cards/" + id + ".bmp");
+            cardform.Show();
+        }
         struct monster_bonus
         {
             public int role_value;
@@ -104,8 +109,11 @@ namespace munchkin
             {
                 button4.Enabled = true;
                 
+
             }
         }
+        List<Card> player1hand = new List<Card>();
+        List<Card> player2hand = new List<Card>();
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -140,10 +148,20 @@ namespace munchkin
         {
             button4.Enabled = false;
             pictureBox7.Enabled = true;
+            pictureBox7.Visible = true;
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
+            cardid = rnd.Next(0,22);
+            CardOpen(cardid);
+            //DoorBroken(cardid);
+            pictureBox7.Enabled = false;
+            pictureBox7.Visible = false;
+            database db = new database();
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand cmd = new MySqlCommand("SELECT * from 'doors' WHERE 'id' = cardid");
             
         }
     }
