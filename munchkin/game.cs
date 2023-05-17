@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace munchkin
 {
@@ -150,18 +151,42 @@ namespace munchkin
             pictureBox7.Enabled = true;
             pictureBox7.Visible = true;
         }
-
+        
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            cardid = rnd.Next(0,22);
+
+            cardid = 1;
             CardOpen(cardid);
             //DoorBroken(cardid);
             pictureBox7.Enabled = false;
             pictureBox7.Visible = false;
+            MySqlConnection connection = new MySqlConnection("server=localhost;database=cards;uid=root;pwd=root;charset=utf8mb4;");
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
             database db = new database();
             DataTable table = new DataTable();
+            
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand cmd = new MySqlCommand("SELECT * from 'doors' WHERE 'id' = cardid");
+            
+            MySqlCommand search = new MySqlCommand("SELECT * FROM newtable", db.getConnection());
+            adapter.SelectCommand = search;
+            adapter.Fill(table);
+            using (DataTableReader reader = table.CreateDataReader())
+            {
+                if (reader.HasRows)
+                    while (reader.Read())
+                      Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader.GetValue(0), reader.GetValue(1), reader.GetValue(2), reader.GetValue(3));
+                else
+                    Console.WriteLine("No rows returned.");
+                reader.Close();
+            //    reader.GetString(1);
+            }
+
+            Console.WriteLine(db.getConnection());
+            
+            
             
         }
     }

@@ -9,7 +9,8 @@ namespace munchkin
 {
     internal class database
     {
-        MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=doors");
+        MySqlConnection connection = new MySqlConnection("server=localhost;database=cards;uid=root;pwd=root;charset=utf8mb4;");
+
         public void openConnection()
         {
             if (connection.State == System.Data.ConnectionState.Closed)
