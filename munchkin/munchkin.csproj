@@ -62,7 +62,6 @@
     <Compile Include="character_form.Designer.cs">
       <DependentUpon>character_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="database.cs" />
     <Compile Include="developers.cs">
       <SubType>Form</SubType>
     </Compile>

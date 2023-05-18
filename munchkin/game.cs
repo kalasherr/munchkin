@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,17 +21,17 @@ namespace munchkin
         int cardid = 0;
         enum role
         {
-            analyst, developer, tester
+            analyst, developer, tester, none
         }
         enum domitary
         {
-            du, pushkina, kp
+            du, pushkina, kp, none
         }
-        enum slot
+        public enum slot
         {
-            head, body, shoes, not_required, hand
+            head, body, shoes, not_required, left_hand, right_hand
         }
-        enum table_state
+        public enum table_state
         {
             battle, first_player_move, second_player_move, punishment, waiting_for_action
         }
@@ -37,67 +39,256 @@ namespace munchkin
         {
             public int id;
             public string name;
-            
+
         }
-        public void CardOpen(int id)
+
+        public static table_state deskstate = new table_state();
+
+        public class Door
         {
-            cardform cardform = new cardform();
-            cardform.BackgroundImage = Image.FromFile("c:/Users/kalas/source/repos/munchkin/munchkin/munchkin/Properties/cards/" + id + ".bmp");
-            cardform.Show();
-        }
-        struct monster_bonus
-        {
-            public int role_value;
-            public role bonus_role;
-            public int domitary_value;
-            public domitary bonus_domitary;
-        }
-        class item : Card
-        {
+            public int id;
+            public string cardclass;
             public int power;
-            public bool big_item;
-            public slot slot;
-            public bool usable;
-            public item(int id, string name, int power, bool big_item, slot slot,bool usable)
+            public string domitary;
+            public int domitarybonus;
+            public string role;
+            public int rolebonus;
+            public int treasures;
+            public string punishment;
+            public Door(int id, string cardclass, int power, string domitary, int domitarybonus, string role, int rolebonus, int treasures, string punishment)
             {
                 this.id = id;
-                this.name = name;
+                this.cardclass = cardclass;
                 this.power = power;
-                this.big_item = big_item;
-                this.slot = slot;
-                this.usable = usable;
-            }
-
-            public void Drop(slot slot, List<Card> droppedcards, Munchkin player)
-            {
-                player.items[slot] = null;
-
+                this.domitary = domitary;
+                this.domitarybonus = domitarybonus;
+                this.role = role;
+                this.rolebonus = rolebonus;
+                this.treasures = treasures;
+                this.punishment = punishment;
             }
         }
+        public class Treasure
+        {
+            public int id;
+            public bool lvlup;
+            public bool usable;
+            public slot slot;
+            public int bonus;
+            public Treasure(int id, bool lvlup, bool usable, slot slot, int bonus)
+            {
+                this.id = id;
+                this.lvlup = lvlup;
+                this.usable = usable;
+                this.slot = slot;
+                this.bonus = bonus;
+            }
+        }
+        static Dictionary<slot,int> playeritems = new Dictionary<slot,int>();
+        Munchkin player = new Munchkin(1, 1,playeritems,role.none,domitary.none);
+        
+        public void Curse(string curse)
+        {
+            
+            if (curse == "lvl" & player.level>1)
+            {
+                player.level = player.level - 1;
+            }
+            else if (curse == "2lvl" & player.level>2)
+            {
+                player.level = player.level - 2;
+            }
+            else if (curse == "death")
+            {
+                MessageBox.Show("Ты проиграл!");
+                Close();
+            }
+            else if (curse == "arm")
+            {
+                player.items.Remove(slot.left_hand);
+                player.items.Add(slot.left_hand, 0);
+                player.items.Remove(slot.right_hand);
+                player.items.Add(slot.right_hand, 0);
+            }
+            else if (curse == "shoes")
+            {
+                player.items.Remove(slot.shoes);
+                player.items.Add(slot.shoes,0);
+            }
+            else if (curse == "domitary")
+            {
+                player.domitary = domitary.none;
+            }
+            else if (curse == "role")
+            {
+                player.role = role.none;
+            }
+        }
+        int battlepower = 0;
+        int treasurernd = 0;
+        public void Endbattle(Door monster)
+        {
+            if (battlepower > monster.power)
+            {
+                for (int treasures = 0; treasures < monster.treasures; treasures++)
+                {
+                    treasurernd = rnd.Next(22, 42);
+                    player1hand.Add(treasurernd);
+                }
+            }
+            else
+            {
+                Curse(monster.punishment);
+            }
+            deskstate = table_state.first_player_move;
+            button4.Enabled = true;
+        }
+        
+        public void Battle(Door monster)
+        {
+            battlepower = 0;
+            {
+                foreach (var a in player.items)
+                {
+                    battlepower = battlepower + a.Value;
+                }
+                if (player.domitary == domitary.pushkina)
+                {
+                    battlepower += 3;
+                }
+                if (player.domitary.ToString() == monster.domitary)
+                {
+                    battlepower = battlepower - monster.domitarybonus;
+                }
+                if (player.domitary.ToString() == monster.domitary)
+                {
+                    battlepower = battlepower - monster.domitarybonus;
+                }
+            }
+
+        }
+        public List<Door> doors = new List<Door>();
+        Door id1 = new Door(1,"curse",0,"",0,"",0,0,"lvl");
+        Door id2 = new Door(2, "monster", 16, "", 0, "", 0, 4, "lvl");
+        Door id3 = new Door(3, "monster", 1, "", 0, "analyst", 5, 1, "");
+        Door id4 = new Door(4, "role", 0, "", 0, "analyst", 0, 0, "");
+        Door id5 = new Door(5, "monster", 6, "", 0, "", 0, 2, "death");
+        Door id6 = new Door(6, "monster", 4, "du", 5, "", 0, 0, "domitary");
+        Door id7 = new Door(7, "role", 0, "", 0, "developer", 0, 0, "");
+        Door id8 = new Door(8, "domitary", 0, "du", 0, "", 0, 0, "");
+        Door id9 = new Door(9, "monster", 16, "", 0, "", 0, 4, "death");
+        Door id10 = new Door(10, "monster", 14, "", 0, "tester", 3, 3, "role");
+        Door id11 = new Door(11, "monster", 25, "", 0, "", 0, 0, "death");
+        Door id12 = new Door(12, "monster", 8, "", 0, "", 0, 2, "");
+        Door id13 = new Door(13, "monster", 2, "du", 3, "", 0, 1, "shoes");
+        Door id14 = new Door(14, "monster", 18, "", 0, "analyst", 5, 4, "role");
+        Door id15 = new Door(15, "curse", 0, "", 0, "", 0, 0, "lvl");
+        Door id16 = new Door(16, "domitary", 0, "pushkina", 0, "", 0, 0, "");
+        Door id17 = new Door(17, "monster", 12, "", 0, "", 0, 3, "2lvl");
+        Door id18 = new Door(18, "monster", 12, "", 0, "analyst", 4, 3, "lvl");
+        Door id19 = new Door(19, "role", 0, "", 0, "tester", 0, 0, "");
+        Door id20 = new Door(20, "curse", 0, "", 0, "", 0, 0, "shoes");
+        Door id21 = new Door(21, "monster", 10, "", 0, "tester", 0, 0, "2lvl");
+        Door id22 = new Door(22, "curse", 0, "", 0, "", 0, 0, "arm");
+        public List<Treasure> treasures = new List<Treasure>();
+        Treasure id23 = new Treasure(23, false, false, slot.body, 2);
+        Treasure id24 = new Treasure(24, false, false, slot.head, 1);
+        Treasure id25 = new Treasure(25, false, false, slot.left_hand, 2);
+        Treasure id26 = new Treasure(26, false, true, slot.body, 2);
+        Treasure id27 = new Treasure(27, false, true, slot.body, 4);
+        Treasure id28 = new Treasure(28, false, false, slot.right_hand, 3);
+        Treasure id29 = new Treasure(29, false, false, slot.left_hand, 6);
+        Treasure id30 = new Treasure(30, true, false, slot.body, 2);
+        Treasure id31 = new Treasure(31, true, false, slot.body, 2);
+        Treasure id32 = new Treasure(32, true, false, slot.body, 2);
+        Treasure id33 = new Treasure(33, true, false, slot.body, 2);
+        Treasure id34 = new Treasure(34, false, false, slot.right_hand, 4);
+        Treasure id35 = new Treasure(35, false, false, slot.body, 2);
+        Treasure id36 = new Treasure(36, false, false, slot.head, 3);
+        Treasure id37 = new Treasure(37, false, true, slot.body, 3);
+        Treasure id38 = new Treasure(38, false, false, slot.head, 2);
+        Treasure id39 = new Treasure(39, false, false, slot.head, 3);
+        Treasure id40 = new Treasure(40, false, false, slot.left_hand, 1);
+        Treasure id41 = new Treasure(41, false, false, slot.shoes, 1);
+
+        public void CardOpen(int cardid)
+        {
+            doors.Add(id1);
+            doors.Add(id2);
+            doors.Add(id3);
+            doors.Add(id4);
+            doors.Add(id5);
+            doors.Add(id6);
+            doors.Add(id7);
+            doors.Add(id8);
+            doors.Add(id9);
+            doors.Add(id10);
+            doors.Add(id11);
+            doors.Add(id12);
+            doors.Add(id13);
+            doors.Add(id14);
+            doors.Add(id15);
+            doors.Add(id16);
+            doors.Add(id17);
+            doors.Add(id18);
+            doors.Add(id19);
+            doors.Add(id20);
+            doors.Add(id21);
+            doors.Add(id22);
+            cardform cardform = new cardform();
+            cardform.BackgroundImage = Image.FromFile("c:/Users/kalas/source/repos/munchkin/munchkin/munchkin/Properties/cards/" + cardid + ".bmp");
+            cardform.Show();
+            foreach (var a in doors)
+            {
+                if (state == table_state.first_player_move & a.id == cardid & a.cardclass == "monster")
+                {
+                    Battle(a);
+                    button3.Enabled = true;
+                    break;
+                }
+                else if (state == table_state.second_player_move & a.id == cardid)
+                {
+                    player1hand.Add(cardid);
+                    button3.Enabled = true;
+                    break;
+                }
+                else if (state == table_state.first_player_move & a.id == cardid & a.cardclass == "curse")
+                {
+                    Curse(a.punishment);
+                    button3.Enabled = true;
+                    break;
+                }
+                else if (state == table_state.first_player_move & a.id == cardid & (a.cardclass == "role" || a.cardclass == "domitary"))
+                {
+                    player1hand.Add(cardid);
+                    state = table_state.second_player_move;
+                    button4.Enabled = true;
+                    break;
+                }
+            }
+            doors.Clear();
+            
+
+        }
+        
+        
         class Munchkin
         {
             public int id;
-            public string name;
             public int level;
-            public Dictionary<slot, item> items;
+            public Dictionary<slot,int> items;
             public role role;
             public domitary domitary;
-
-        }
-        class Monster : Card
-        {
-            public int level;
-            public monster_bonus bonus;
-            public int treasure;
-            public Monster(int id, string name, int level, monster_bonus bonus,int treasure)
+            public Munchkin(int  id,int level,Dictionary<slot,int> items,role role,domitary domitary )
             {
-                this.id= id;
-                this.name = name;
+                this.id = id;
                 this.level = level;
-                this.bonus = bonus;
-                this.treasure = treasure;
+                this.items = items;
+                this.role = role;
+                this.domitary = domitary;
             }
         }
+        
         public int a = 0;
         table_state state = new table_state();
         
@@ -113,8 +304,7 @@ namespace munchkin
 
             }
         }
-        List<Card> player1hand = new List<Card>();
-        List<Card> player2hand = new List<Card>();
+        List<int> player1hand = new List<int>();
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -152,42 +342,36 @@ namespace munchkin
             pictureBox7.Visible = true;
         }
         
+        public static void StartGame()
+        {
+            
+        }
         private void pictureBox7_Click(object sender, EventArgs e)
         {
 
-            cardid = 1;
+            cardid = rnd.Next(0,22);
+            
             CardOpen(cardid);
+
             //DoorBroken(cardid);
             pictureBox7.Enabled = false;
-            pictureBox7.Visible = false;
-            MySqlConnection connection = new MySqlConnection("server=localhost;database=cards;uid=root;pwd=root;charset=utf8mb4;");
-            if (connection.State == ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-            database db = new database();
-            DataTable table = new DataTable();
-            
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            
-            MySqlCommand search = new MySqlCommand("SELECT * FROM newtable", db.getConnection());
-            adapter.SelectCommand = search;
-            adapter.Fill(table);
-            using (DataTableReader reader = table.CreateDataReader())
-            {
-                if (reader.HasRows)
-                    while (reader.Read())
-                      Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader.GetValue(0), reader.GetValue(1), reader.GetValue(2), reader.GetValue(3));
-                else
-                    Console.WriteLine("No rows returned.");
-                reader.Close();
-            //    reader.GetString(1);
-            }
+            pictureBox7.Visible = false;            
+        }
 
-            Console.WriteLine(db.getConnection());
-            
-            
-            
+        private void button6_Click(object sender, EventArgs e)
+        {
+            StartGame();
+            button6.Visible = false;
+            button6.Enabled = false;
+        }
+        int cardcount = 0;
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            foreach (var a in player1hand)
+            {
+                cardcount++;
+
+            }
         }
     }
 }

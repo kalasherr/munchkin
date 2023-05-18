@@ -17,6 +17,20 @@
 			}
 		}
 	},
+	"virtual-models": {
+		"mysql8-18829f0b98d-7795a61ed36871b4": {
+			"cards": {
+				":doors": {
+					"constraints": {
+						"VIRTUAL_PK": {
+							"type": "vpk",
+							"useAllColumns": true
+						}
+					}
+				}
+			}
+		}
+	},
 	"connection-types": {
 		"dev": {
 			"name": "Разработка",

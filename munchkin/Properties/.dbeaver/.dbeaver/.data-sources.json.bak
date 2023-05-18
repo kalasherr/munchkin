@@ -9,8 +9,7 @@
 			"configuration": {
 				"host": "localhost",
 				"port": "3306",
-				"database": "cards",
-				"url": "jdbc:mysql://localhost:3306/cards",
+				"url": "jdbc:mysql://localhost:3306/",
 				"configurationType": "MANUAL",
 				"home": "C:\\Program Files\\MySQL\\MySQL Router 8.0",
 				"type": "dev",

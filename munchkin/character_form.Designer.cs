@@ -45,10 +45,10 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label1.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(400, 271);
-            this.label1.Name = "label1";
+            this.label1.Name = "leftarm";
             this.label1.Size = new System.Drawing.Size(57, 22);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "пусто";
             // 
             // label2
             // 
@@ -56,10 +56,10 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label2.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(262, 620);
-            this.label2.Name = "label2";
+            this.label2.Name = "shoes";
             this.label2.Size = new System.Drawing.Size(64, 22);
             this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.label2.Text = "пусто";
             // 
             // label3
             // 
@@ -67,10 +67,10 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label3.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(293, 379);
-            this.label3.Name = "label3";
+            this.label3.Name = "body";
             this.label3.Size = new System.Drawing.Size(62, 22);
             this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.label3.Text = "пусто";
             // 
             // label4
             // 
@@ -78,10 +78,10 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label4.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(262, 95);
-            this.label4.Name = "label4";
+            this.label4.Name = "head";
             this.label4.Size = new System.Drawing.Size(63, 22);
             this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
+            this.label4.Text = "пусто";
             // 
             // label5
             // 
@@ -89,10 +89,10 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label5.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(127, 271);
-            this.label5.Name = "label5";
+            this.label5.Name = "rightarm";
             this.label5.Size = new System.Drawing.Size(63, 22);
             this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
+            this.label5.Text = "пусто";
             // 
             // label6
             // 
@@ -100,10 +100,10 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label6.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(9, 9);
-            this.label6.Name = "label6";
+            this.label6.Name = "level";
             this.label6.Size = new System.Drawing.Size(64, 22);
             this.label6.TabIndex = 5;
-            this.label6.Text = "label6";
+            this.label6.Text = "1";
             // 
             // label7
             // 
@@ -111,10 +111,10 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label7.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.Location = new System.Drawing.Point(10, 53);
-            this.label7.Name = "label7";
+            this.label7.Name = "domitary";
             this.label7.Size = new System.Drawing.Size(63, 22);
             this.label7.TabIndex = 6;
-            this.label7.Text = "label7";
+            this.label7.Text = "пусто";
             // 
             // label8
             // 
@@ -122,10 +122,10 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.label8.Font = new System.Drawing.Font("Munchkin", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(9, 95);
-            this.label8.Name = "label8";
+            this.label8.Name = "role";
             this.label8.Size = new System.Drawing.Size(62, 22);
             this.label8.TabIndex = 7;
-            this.label8.Text = "label8";
+            this.label8.Text = "пусто";
             // 
             // character_form
             // 
