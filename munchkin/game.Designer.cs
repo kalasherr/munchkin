@@ -52,6 +52,12 @@ namespace munchkin
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -80,6 +86,7 @@ namespace munchkin
             this.button3.TabIndex = 6;
             this.button3.Text = "Конец хода";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -107,9 +114,9 @@ namespace munchkin
             this.label3.Font = new System.Drawing.Font("Munchkin", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(53, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 36);
+            this.label3.Size = new System.Drawing.Size(107, 36);
             this.label3.TabIndex = 9;
-            this.label3.Text = "0";
+            this.label3.Text = "00:00";
             // 
             // timer1
             // 
@@ -123,9 +130,9 @@ namespace munchkin
             this.label4.Font = new System.Drawing.Font("Munchkin", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(485, 646);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 23);
+            this.label4.Size = new System.Drawing.Size(37, 23);
             this.label4.TabIndex = 12;
-            this.label4.Text = "x5";
+            this.label4.Text = "x0";
             // 
             // pictureBox5
             // 
@@ -206,12 +213,74 @@ namespace munchkin
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Munchkin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button5.Location = new System.Drawing.Point(23, 646);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(226, 34);
+            this.button5.TabIndex = 19;
+            this.button5.Text = "Сыграть карту";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Munchkin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button7.Location = new System.Drawing.Point(23, 686);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(226, 34);
+            this.button7.TabIndex = 20;
+            this.button7.Text = "Сдаться";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1101, 21);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 23);
+            this.button2.TabIndex = 21;
+            this.button2.Text = "+10";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(1195, 21);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(79, 23);
+            this.button8.TabIndex = 22;
+            this.button8.Text = "-10";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1106, 70);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 23;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1106, 83);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 13);
+            this.label6.TabIndex = 24;
+            // 
             // game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.button4);
@@ -258,5 +327,11 @@ namespace munchkin
         private Button button4;
         private PictureBox pictureBox7;
         private Button button6;
+        private Button button5;
+        private Button button7;
+        private Button button2;
+        private Button button8;
+        private Label label5;
+        private Label label6;
     }
 }

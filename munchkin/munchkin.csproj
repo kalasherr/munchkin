@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="staticclass.cs" />
     <EmbeddedResource Include="cardform.resx">
       <DependentUpon>cardform.cs</DependentUpon>
     </EmbeddedResource>
